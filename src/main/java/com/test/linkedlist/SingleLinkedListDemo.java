@@ -249,19 +249,4 @@ class SingleLinkedList {
 
 }
 
-@Data
-@ToString
-@RequiredArgsConstructor
-class HeroNode {
-    @NonNull
-    public int no;
-    @NonNull
-    private String name;
-    @NonNull
-    private String nickname;
 
-    @ToString.Exclude
-    private HeroNode next;
-
-
-}
