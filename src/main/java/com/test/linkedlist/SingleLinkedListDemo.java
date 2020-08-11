@@ -2,6 +2,7 @@ package com.test.linkedlist;
 
 import lombok.*;
 
+import java.awt.*;
 import java.util.Stack;
 
 public class SingleLinkedListDemo {
@@ -55,7 +56,40 @@ public class SingleLinkedListDemo {
         System.out.println("开始");
         //没有改变链表的结构
         reversePrint(singleLinkedList.getHead());
+        reverse2(singleLinkedList.getHead());
     }
+
+    public static void reverse2(HeroNode head) {
+        if(head.getNext() == null || head.getNext().getNext() == null) {
+            System.out.println("empty");
+            return;
+        }
+
+        HeroNode tempHead = new HeroNode(-1, "", "");
+        HeroNode cur = head.getNext();
+        HeroNode next;
+
+        while(cur != null) {
+            next = cur.getNext();
+            cur.setNext(tempHead.getNext());
+            tempHead.setNext(cur);
+            cur = next;
+        }
+        System.out.println(head);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static void reversePrint(HeroNode head) {
         if(head.getNext() == null) {
