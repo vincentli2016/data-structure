@@ -18,23 +18,54 @@ public class PolandNotation {
         System.out.println(infixExpressionList); //[1, +, (, (, 2, +, 3, ), *, 4, ), -, 5]
 
         //将得到的中缀表达式对应的list转换成后缀表达式对应的List， 小括号会被消除掉
-        List<String> suffixExpressionList = parseSuffixExpressionList(infixExpressionList);
+        List<String> suffixExpressionList = parseSuffixExpressionList2(infixExpressionList);
         System.out.println(suffixExpressionList);
 
 
-//        //先定义一个逆波兰表达式
-//        //(3+4)*5-6  =>    3 4 + 5 * 6 -
-//        //说明： 为了方便， 逆波兰表达式的数字和符号用空格隔开
-//        String suffixExpression = "3 4 + 5 * 6 -";
-//        //思路
-//        //1. 先将expression放到ArrayList中
-//        //2. 将ArrayList传递给一个方法， 遍历ArrayList配合栈 完成计算
-//        List<String> list = getListString(suffixExpression);
-//        System.out.println("list="+ list);
-//
-//        int res = calculate(list);
-//        System.out.println("计算的结果是=" + res);
+        //先定义一个逆波兰表达式
+        //(3+4)*5-6  =>    3 4 + 5 * 6 -
+        //说明： 为了方便， 逆波兰表达式的数字和符号用空格隔开
+        //String suffixExpression = "3 4 + 5 * 6 -";
+        //思路
+        //1. 先将expression放到ArrayList中
+        //2. 将ArrayList传递给一个方法， 遍历ArrayList配合栈 完成计算
+        //List<String> list = getListString(suffixExpression);
+        System.out.println("list="+ suffixExpressionList);
+
+        int res = calculate(suffixExpressionList);
+        System.out.println("计算的结果是=" + res);
     }
+
+    public static List<String> parseSuffixExpressionList2(List<String> list) {
+        Stack<String> s1 = new Stack<>();
+        List<String> s2 = new ArrayList<>();
+
+        for(String item : list) {
+            if(item.matches("\\d+")) {
+                s2.add(item);
+            } else if(item.equals("(")) {
+                s1.push(item);
+            } else if(item.equals(")")) {
+                while(!s1.peek().equals("(")) {
+                    s2.add(s1.pop());
+                }
+                s1.pop();
+            } else {
+                if(s1.size() > 0 && Operation.getValue(s1.peek()) >= Operation.getValue(item)) {
+                    s2.add(s1.pop());
+                }
+                s1.push(item);
+            }
+        }
+
+        while(s1.size() > 0) {
+            s2.add(s1.pop());
+        }
+
+        return s2;
+
+    }
+
 
     public static List<String> parseSuffixExpressionList(List<String> list) {
         //定义两个栈
@@ -124,7 +155,7 @@ public class PolandNotation {
                 if(item.equals("+")) {
                     res = num1 + num2;
                 } else if(item.equals("-")) {
-                    res = num1 + num2;
+                    res = num1 - num2;
                 } else if(item.equals("*")) {
                     res = num1 * num2;
                 } else if(item.equals("/")) {
