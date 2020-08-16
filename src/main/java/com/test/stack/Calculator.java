@@ -21,8 +21,8 @@ public class Calculator {
             //一次得到express里面的每一个字符
             ch = expression.substring(index, index+1).charAt(0);
             //判断
-            if(operatorStack.isOperator(ch)) {//判断当前的符号栈是否为空
-                if(!operatorStack.isEmpty()) {
+            if(operatorStack.isOperator(ch)) {
+                if(!operatorStack.isEmpty()) {//判断当前的符号栈是否为空
                     //处理，如果有操作符，需要进行优先级比较
                     if(operatorStack.priority(ch) <= operatorStack.priority(operatorStack.peek())) {
                         num1 = numStack.pop();
@@ -53,6 +53,7 @@ public class Calculator {
                 if(index == expression.length() - 1) {
                     numStack.push(Integer.parseInt(keepNum));
                 } else {
+                    //拼接数字,一直到后一位是运算符的时候,就将拼接好的数值入栈
                     if(operatorStack.isOperator(expression.substring(index+1, index+2).charAt(0))) {
                         //如果后一位是运算符则入栈
                         numStack.push(Integer.parseInt(keepNum));
