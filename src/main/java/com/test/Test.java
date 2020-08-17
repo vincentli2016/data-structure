@@ -7,6 +7,10 @@ public class Test {
         int[] arr = {101, 34, 119, 1};
         insertSort(arr);
         System.out.println(Arrays.toString(arr));
+
+
+        int test = 253;
+        System.out.println(test/10/10%10);
     }
 
     private static void insertSort(int[] arr) {
