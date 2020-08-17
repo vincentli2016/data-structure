@@ -6,18 +6,20 @@ public class MergeSort {
     public static void main(String[] args) {
         int[] arr = {8, 4, 5, 7, 1, 3, 6, 2};
         int[] temp = new int[arr.length]; //归并排序需要额外的空间
-        mergeSort(arr, 0, arr.length - 1, temp);
+        splitAndSort(arr, 0, arr.length - 1, temp);
         System.out.println("归并排序后=" + Arrays.toString(arr));
     }
 
     //分+合方法
-    private static void mergeSort(int[] arr, int left, int right, int[] temp) {
+    private static void splitAndSort(int[] arr, int left, int right, int[] temp) {
         if(left < right) {
             int mid = (left + right) / 2;
             //向左递归进行分解
-            mergeSort(arr, left, mid, temp);
+            splitAndSort(arr, left, mid, temp);
             //向右递归进行分解
-            mergeSort(arr, mid + 1, right , temp);
+            splitAndSort(arr, mid + 1, right , temp);
+
+
             //到合并
             merge(arr, left, mid, right, temp);
         }
