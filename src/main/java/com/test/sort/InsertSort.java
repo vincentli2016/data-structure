@@ -8,7 +8,6 @@ public class InsertSort {
         insertSort(arr);
     }
 
-
     private static void sort(int[] arr) {
 
         int insertVal  = arr[1];
@@ -22,11 +21,6 @@ public class InsertSort {
         arr[insertIndex + 1] = insertVal;
 
         System.out.println(Arrays.toString(arr));
-
-
-
-
-
 
     }
 
@@ -54,6 +48,5 @@ public class InsertSort {
             System.out.println("第"+i+"轮结束");
             System.out.println(Arrays.toString(arr));
         }
-
     }
 }

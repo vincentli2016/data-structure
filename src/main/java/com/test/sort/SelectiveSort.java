@@ -33,25 +33,6 @@ public class SelectiveSort {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public static void selectiveSort(int[] arr) {
         for(int i = 0 ; i < arr.length - 1; i++) {
             int minIndex = i;
