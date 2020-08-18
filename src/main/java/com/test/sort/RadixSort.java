@@ -17,7 +17,7 @@ public class RadixSort {
                 max = arr[i];
             }
         }
-        //得到最大数是几位数
+        //得到最大数是几位数, 最大数是几位,表示就要做几轮排序
         int maxLength = (max + "").length();
 
         //第1轮（针对每个元素的个位进行排序处理）
@@ -35,6 +35,7 @@ public class RadixSort {
 
         //使用循环将代码处理
         for(int i = 0, n = 1; i < maxLength; i++, n*=10) {
+
             for(int j = 0; j < arr.length; j++) {
                 //取出每个元素的个位数
                 int digitOfElement = arr[j] / n % 10;
@@ -80,8 +81,9 @@ public class RadixSort {
         //第一轮 按照每个元素的个位数进行处理
         for(int j = 0; j < arr.length; j++) {
             //取出每个元素的个位数
-            int digitOfElement = arr[j] % 10;
-            bucket[digitOfElement][bucketElementCounts[digitOfElement]] = arr[j];
+            int digitOfElement = arr[j] % 10;//253
+            bucket[   digitOfElement   ][   bucketElementCounts[digitOfElement]   ] = arr[j];
+
             bucketElementCounts[digitOfElement]++;
         }
 
@@ -103,6 +105,16 @@ public class RadixSort {
         }
 
         System.out.println("第一轮， 对个位排序的处理 arr=" + Arrays.toString(arr));
+
+
+
+
+
+
+
+
+
+
 
 
         //第二轮 按照每个元素的个位数进行处理
